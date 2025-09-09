@@ -38,4 +38,5 @@ def test_standardize_strings(sample_df):
         # All non-null strings should be lowercase
         assert df_standardized[col].dropna().str.islower().all()
         # All strings should be stripped (no leading/trailing whitespace)
-        assert (df_standardized[col].dropna() == df_standardized[col].dropna().str.strip()).all()
+        assert (df_standardized[col].dropna() ==
+                df_standardized[col].dropna().str.strip()).all()
