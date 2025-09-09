@@ -33,10 +33,15 @@ cd data-doctor
 
 # Create virtual environment
 python3 -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install package in editable mode
-pip install -e .[dev]
+# Install package in editable mode with dev dependencies
+pip install -e ".[dev]"
+```
+Or directly from PyPI:
+
+```bash
+pip install data_doctor_lib
 ```
 
 ## Usage
@@ -58,7 +63,8 @@ df_cleaned = (cleaner
               .drop_duplicates()
               .fill_missing(strategy="mean")
               .standardize_strings()
-              .run_email_validation("email"))
+              .run_email_validation("email")
+              .get_df())
 
 # Using DataPipeline
 pipeline = DataPipeline(df.copy())
@@ -75,6 +81,9 @@ print(validation_report)
 ```bash
 # Run all tests
 pytest tests/ 
+
+# Run tests with coverage
+pytest --cov=src/data_doctor tests/
 ```
 
 ## Contributing
